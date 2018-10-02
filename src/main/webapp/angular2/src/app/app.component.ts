@@ -24,6 +24,10 @@ export class AppComponent implements OnInit{
   onSubmit({value, valid}: {value: Roomsearch, valid: boolean}) {
     console.log(value);
   }
+
+  reserveRoom(value:String) {
+    console.log("Room id for reservation: " + value);
+  }
 }
 
 export interface Roomsearch {
@@ -46,7 +50,7 @@ var ROOMS: Room[] = [
     links: ""
   },
   {
-    id: "123546",
+    id: "123540",
     roomNumber: "410",
     price: "150",
     links: ""
