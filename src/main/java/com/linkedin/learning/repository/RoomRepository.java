@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface RoomRepository extends CrudRepository<RoomEntity, Long> {
 
-    List<RoomEntity> getById(Long id);
+    //List<RoomEntity> getById(Long id);
     //List<RoomEntity> findById(Long id);
+    RoomEntity getById(Long id);
 
 }
