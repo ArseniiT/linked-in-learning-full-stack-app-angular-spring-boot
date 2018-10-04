@@ -22,7 +22,8 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 
 @RestController
-@RequestMapping(ResourseConstants.ROOM_RESERVATION_V1)
+@RequestMapping(ResourceConstants.ROOM_RESERVATION_V1)
+@CrossOrigin
 public class ReservationResource {
 
 

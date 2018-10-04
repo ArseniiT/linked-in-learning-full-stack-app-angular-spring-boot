@@ -4,7 +4,7 @@ import com.linkedin.learning.entity.RoomEntity;
 import com.linkedin.learning.model.Links;
 import com.linkedin.learning.model.Self;
 import com.linkedin.learning.model.response.ReservableRoomResponse;
-import com.linkedin.learning.rest.ResourseConstants;
+import com.linkedin.learning.rest.ResourceConstants;
 import org.springframework.core.convert.converter.Converter;
 
 public class RoomEntityToReservationResponseConverter implements Converter<RoomEntity, ReservableRoomResponse> {
@@ -17,7 +17,7 @@ public class RoomEntityToReservationResponseConverter implements Converter<RoomE
 
         Links links = new Links();
         Self self = new Self();
-        self.setRef(ResourseConstants.ROOM_RESERVATION_V1 + "/" + source.getId());
+        self.setRef(ResourceConstants.ROOM_RESERVATION_V1 + "/" + source.getId());
 
         reservableRoomResponse.setLink(links);
 
