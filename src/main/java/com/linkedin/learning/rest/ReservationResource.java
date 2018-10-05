@@ -51,12 +51,12 @@ public class ReservationResource {
 
         Page<RoomEntity> roomEntityList = pageableRoomRepository.findAll(pageable);
 
-        Iterator<RoomEntity> itr = roomEntityList.iterator();
+        /*Iterator<RoomEntity> itr = roomEntityList.iterator();
         while (itr.hasNext()) {
             System.out.println("------------------------------!!!");
             System.out.println(itr.next().getReservationEntityList().size());
             System.out.println("------------------------------!!!");
-        }
+        }*/
 
         //return new ResponseEntity<>(new ReservableRoomResponse(), HttpStatus.OK);
         return roomEntityList.map(new RoomEntityToReservableRoomResponseFunction()) ;

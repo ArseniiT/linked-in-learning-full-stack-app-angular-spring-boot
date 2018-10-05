@@ -16,8 +16,6 @@ public class ApiConfig {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         return objectMapper;
-
-
     }
 
     @Bean
@@ -25,5 +23,4 @@ public class ApiConfig {
     public ObjectWriter objectWriter(ObjectWriter objectWriter) {
         return objectMapper().writerWithDefaultPrettyPrinter();
     }
-
 }

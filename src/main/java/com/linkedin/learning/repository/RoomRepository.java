@@ -12,6 +12,7 @@ public interface RoomRepository extends CrudRepository<RoomEntity, Long> {
     //List<RoomEntity> getById(Long id);
     @Query
     //Optional<RoomEntity> findById(Long id);
-    RoomEntity getById(Long id);
+    RoomEntity findById(Long id);
+//    RoomEntity getById(Long id);
 
 }
