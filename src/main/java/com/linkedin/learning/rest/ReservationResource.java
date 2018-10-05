@@ -20,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Iterator;
 
 @RestController
 @RequestMapping(ResourceConstants.ROOM_RESERVATION_V1)
@@ -49,6 +50,13 @@ public class ReservationResource {
             LocalDate checkout, Pageable pageable ) {
 
         Page<RoomEntity> roomEntityList = pageableRoomRepository.findAll(pageable);
+
+        Iterator<RoomEntity> itr = roomEntityList.iterator();
+        while (itr.hasNext()) {
+            System.out.println("------------------------------!!!");
+            System.out.println(itr.next().getReservationEntityList().size());
+            System.out.println("------------------------------!!!");
+        }
 
         //return new ResponseEntity<>(new ReservableRoomResponse(), HttpStatus.OK);
         return roomEntityList.map(new RoomEntityToReservableRoomResponseFunction()) ;

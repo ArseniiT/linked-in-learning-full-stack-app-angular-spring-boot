@@ -7,7 +7,7 @@ import com.linkedin.learning.model.response.ReservableRoomResponse;
 import com.linkedin.learning.rest.ResourceConstants;
 import org.springframework.core.convert.converter.Converter;
 
-public class RoomEntityToReservationResponseConverter implements Converter<RoomEntity, ReservableRoomResponse> {
+public class RoomEntityToReservableRoomResponseConverter implements Converter<RoomEntity, ReservableRoomResponse> {
     @Override
     public ReservableRoomResponse convert(RoomEntity source) {
 

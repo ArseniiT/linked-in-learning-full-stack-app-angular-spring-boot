@@ -23,10 +23,12 @@ public class ReservationRequest {
     }
 
     public Long getRoomId() {
+        System.out.println(roomId + " GET roomID");
         return roomId;
     }
 
     public void setRoomId(Long roomId) {
+        System.out.println(roomId + " SET roomID");
         this.roomId = roomId;
     }
 

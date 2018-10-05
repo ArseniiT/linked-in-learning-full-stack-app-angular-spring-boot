@@ -12,7 +12,7 @@ public class ReservationEntityToReservationResponseFunction implements Function<
         ReservationResponse reservationResponse = new ReservationResponse();
         reservationResponse.setCheckin(reservationEntity.getCheckin());
         reservationResponse.setCheckout(reservationEntity.getCheckout());
-
+        //reservationResponse.setId(reservationEntity.getId());
         if (reservationEntity.getId() != null) {
             reservationResponse.setId(reservationEntity.getId());
         }

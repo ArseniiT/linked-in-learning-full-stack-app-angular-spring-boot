@@ -32,10 +32,14 @@ public class RoomEntity {
     }
 
     public Long getId() {
+
+        System.out.println(id + " GET ID from roomEntity");
         return id;
     }
 
     public void setId(Long id) {
+
+        System.out.println(id + " SET ID from roomEntity");                                                                                                                                                System.out.println(id + " SET ID");
         this.id = id;
     }
 

@@ -30,10 +30,14 @@ public class ReservationEntity {
     }
 
     public Long getId() {
+
+        //System.out.println(id + " GET ID");
         return id;
     }
 
     public void setId(Long id) {
+
+        //System.out.println(id + " SET ID");
         this.id = id;
     }
 

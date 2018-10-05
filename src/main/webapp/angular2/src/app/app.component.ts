@@ -1,11 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
-import { Http, Response } from "@angular/http"
-import { Observable } from "rxjs";
-import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/catch";
 
 @Component({
   selector: 'app-root',
@@ -26,30 +21,27 @@ export class AppComponent implements OnInit{
       checkin: new FormControl(''),
       checkout: new FormControl('')
     });
-
-    //this.rooms = ROOMS;
   }
 
   onSubmit({value, valid}: {value: Roomsearch, valid: boolean}) {
-    this.getAll()
-      .subscribe(
-        rooms =>this.rooms = rooms,
-          err => { console.log(err)}
-      );
+    this.http.get(this.baseUrl + '/room/reservation/v1?checkin=2017-03-18&checkout=2017-03-25')
+      .subscribe((data) =>{
+        this.rooms = data['content'];
+      });
   }
 
   reserveRoom(value:String) {
     console.log("Room id for reservation: " + value);
   }
 
-  getAll():Observable<Room[]> {
+  /*getAll():Observable<Room[]> {
     return this.http.get(this.baseUrl + '/room/reservation/v1?checkin=2017-03-18&checkout=2017-03-25')
       .pipe(map(this.mapRoom));
   }
 
   mapRoom(response:Response):Room[] {
     return response.json().content;
-  }
+  }*/
 }
 
 export interface Roomsearch {
