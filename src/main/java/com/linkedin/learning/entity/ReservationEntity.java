@@ -21,7 +21,7 @@ public class ReservationEntity {
     @ManyToOne
     private RoomEntity roomEntity;
 
-    public ReservationEntity(@NotNull LocalDate checkin, @NotNull LocalDate checkout) {
+    public ReservationEntity(LocalDate checkin, LocalDate checkout) {
         this.checkin = checkin;
         this.checkout = checkout;
     }
@@ -30,14 +30,10 @@ public class ReservationEntity {
     }
 
     public Long getId() {
-
-        //System.out.println(id + " GET ID");
         return id;
     }
 
     public void setId(Long id) {
-
-        //System.out.println(id + " SET ID");
         this.id = id;
     }
 
@@ -63,5 +59,15 @@ public class ReservationEntity {
 
     public void setRoomEntity(RoomEntity roomEntity) {
         this.roomEntity = roomEntity;
+    }
+
+    @Override
+    public String toString() {
+        return "ReservationEntity{" +
+                "id=" + id +
+                ", checkin=" + checkin +
+                ", checkout=" + checkout +
+                ", roomEntity=" + roomEntity +
+                '}';
     }
 }

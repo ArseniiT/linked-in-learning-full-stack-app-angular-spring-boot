@@ -18,14 +18,10 @@ public class ReservationResponse {
     }
 
     public Long getId() {
-
-        System.out.println(id + " GET ID in response");
         return id;
     }
 
     public void setId(Long id) {
-
-        System.out.println(id + " SET ID in response");
         this.id = id;
     }
 

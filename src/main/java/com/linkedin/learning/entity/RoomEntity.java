@@ -22,24 +22,18 @@ public class RoomEntity {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<ReservationEntity> reservationEntityList;
 
-    public RoomEntity() {
-        super();
-    }
+    public RoomEntity() {}
 
-    public RoomEntity(@NotNull Integer roomNumber, @NotNull String price) {
+    public RoomEntity(Integer roomNumber, String price) {
         this.roomNumber = roomNumber;
         this.price = price;
     }
 
     public Long getId() {
-
-        System.out.println(id + " GET ID from roomEntity");
         return id;
     }
 
     public void setId(Long id) {
-
-        System.out.println(id + " SET ID from roomEntity");                                                                                                                                                System.out.println(id + " SET ID");
         this.id = id;
     }
 

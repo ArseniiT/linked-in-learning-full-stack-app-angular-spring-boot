@@ -10,12 +10,10 @@ public class ReservationEntityToReservationResponseFunction implements Function<
     public ReservationResponse apply(ReservationEntity reservationEntity) {
 
         ReservationResponse reservationResponse = new ReservationResponse();
+
+        reservationResponse.setId(reservationEntity.getId());
         reservationResponse.setCheckin(reservationEntity.getCheckin());
         reservationResponse.setCheckout(reservationEntity.getCheckout());
-        //reservationResponse.setId(reservationEntity.getId());
-        if (reservationEntity.getId() != null) {
-            reservationResponse.setId(reservationEntity.getId());
-        }
 
         return reservationResponse;
     }

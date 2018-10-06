@@ -12,7 +12,10 @@ public class RoomEntityToReservableRoomResponseFunction implements Function<Room
 
     @Override
     public ReservableRoomResponse apply(RoomEntity roomEntity) {
+
         ReservableRoomResponse reservableRoomResponse = new ReservableRoomResponse();
+        if(null != roomEntity.getId())
+            reservableRoomResponse.setId(roomEntity.getId());
         reservableRoomResponse.setRoomNumber(roomEntity.getRoomNumber());
         reservableRoomResponse.setPrice(Integer.valueOf(roomEntity.getPrice()));
 

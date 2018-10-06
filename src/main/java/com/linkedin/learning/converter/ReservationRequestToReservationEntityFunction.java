@@ -10,12 +10,13 @@ public class ReservationRequestToReservationEntityFunction implements Function<R
     public ReservationEntity apply(ReservationRequest reservationRequest) {
 
         ReservationEntity reservationEntity = new ReservationEntity();
-        reservationEntity.setCheckin(reservationRequest.getCheckin());
-        reservationEntity.setCheckout(reservationRequest.getCheckout());
-
         if(reservationRequest.getId() != null) {
             reservationEntity.setId(reservationRequest.getId());
         }
+        reservationEntity.setCheckin(reservationRequest.getCheckin());
+        reservationEntity.setCheckout(reservationRequest.getCheckout());
+
+
 
         return reservationEntity;
     }

@@ -2,7 +2,6 @@ import { Component,OnInit } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import {RequestOptions} from "@angular/http";
 
 @Component({
   selector: 'app-root',
@@ -37,7 +36,7 @@ export class AppComponent implements OnInit{
   }
 
   onSubmit({value, valid}: {value: Roomsearch, valid: boolean}) {
-    this.http.get(this.baseUrl + '/room/reservation/v1?checkin=2017-03-18&checkout=2017-03-25')
+    this.http.get(this.baseUrl + '/room/reservation/v1?checkin=' + this.currentCheckInVal + '&checkout=' + this.currentCheckOutVal)
       .subscribe((data) =>{
         this.rooms = data['content'];
       },
@@ -51,30 +50,15 @@ export class AppComponent implements OnInit{
     this.createReservation(this.request);
   }
 
-  createReservation(body: ReserveRoomRequest) {
+  createReservation(body: Object/*ReserveRoomRequest*/) {
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
     let bodyString = JSON.stringify(body);
     this.http.post(this.baseUrl + '/room/reservation/v1', body, httpOptions)
       .subscribe(res => console.log(res))
-
-
-    /*let bodyString = JSON.stringify(body);
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let option = new RequestOptions({headers: headers})
-
-    this.http.post(this.baseUrl + '/room/reservation/v1', body, headers);*/
   }
 
-  /*getAll():Observable<Room[]> {
-    return this.http.get(this.baseUrl + '/room/reservation/v1?checkin=2017-03-18&checkout=2017-03-25')
-      .pipe(map(this.mapRoom));
-  }
-
-  mapRoom(response:Response):Room[] {
-    return response.json().content;
-  }*/
 }
 
 export interface Roomsearch {
@@ -103,28 +87,4 @@ export class ReserveRoomRequest {
     this.checkin = checkin;
     this.checkout = checkout;
   }
-  
 }
-
-/*
-var ROOMS: Room[] = [
-  {
-    id: "123546",
-    roomNumber: "409",
-    price: "200",
-    links: ""
-  },
-  {
-    id: "123540",
-    roomNumber: "410",
-    price: "150",
-    links: ""
-  },
-  {
-    id: "123544",
-    roomNumber: "411",
-    price: "205",
-    links: ""
-  }
-];
-*/

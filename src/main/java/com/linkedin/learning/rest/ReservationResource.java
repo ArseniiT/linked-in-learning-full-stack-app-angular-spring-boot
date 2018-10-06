@@ -20,7 +20,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Iterator;
 
 @RestController
 @RequestMapping(ResourceConstants.ROOM_RESERVATION_V1)
@@ -49,16 +48,10 @@ public class ReservationResource {
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
             LocalDate checkout, Pageable pageable ) {
 
+        System.out.println("PAGEABLE: " + pageable);
         Page<RoomEntity> roomEntityList = pageableRoomRepository.findAll(pageable);
+        System.out.println("roomEntityList: " + roomEntityList);
 
-        /*Iterator<RoomEntity> itr = roomEntityList.iterator();
-        while (itr.hasNext()) {
-            System.out.println("------------------------------!!!");
-            System.out.println(itr.next().getReservationEntityList().size());
-            System.out.println("------------------------------!!!");
-        }*/
-
-        //return new ResponseEntity<>(new ReservableRoomResponse(), HttpStatus.OK);
         return roomEntityList.map(new RoomEntityToReservableRoomResponseFunction()) ;
     }
 
@@ -66,9 +59,9 @@ public class ReservationResource {
     @RequestMapping(path = "/{roomId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<RoomEntity> getRoomById(
             @PathVariable
-            Long roomId) {
+            Long roomId) throws Exception {
 
-        RoomEntity roomEntity = roomRepository.getById(roomId);
+        RoomEntity roomEntity = roomRepository.findById(roomId).get();
 
         return new ResponseEntity<>(roomEntity, HttpStatus.OK);
     }
@@ -78,12 +71,13 @@ public class ReservationResource {
                     consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<ReservationResponse> createReservation(
             @RequestBody
-                    ReservationRequest reservationRequest) {
+                    ReservationRequest reservationRequest) throws Exception {
 
         ReservationEntity reservationEntity = conversionService.convert(reservationRequest, ReservationEntity.class);
         reservationRepository.save(reservationEntity);
 
-        RoomEntity roomEntity = roomRepository.getById(reservationRequest.getRoomId());
+        RoomEntity roomEntity = roomRepository.findById(reservationRequest.getRoomId()).get();
+
         roomEntity.addReservationEntity(reservationEntity);
         roomRepository.save(roomEntity);
         reservationEntity.setRoomEntity(roomEntity);

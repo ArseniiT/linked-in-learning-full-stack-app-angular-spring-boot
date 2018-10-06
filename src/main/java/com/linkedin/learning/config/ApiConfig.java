@@ -10,17 +10,15 @@ import org.springframework.context.annotation.Lazy;
 @Configuration
 public class ApiConfig {
 
-    @Bean
     public ObjectMapper objectMapper() {
-        //return new ObjectMapper();
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
-        return objectMapper;
+        return new ObjectMapper();
+
     }
 
     @Bean
-    @Lazy
-    public ObjectWriter objectWriter(ObjectWriter objectWriter) {
+    public ObjectWriter objectWriter(ObjectMapper objectMapper) {
         return objectMapper().writerWithDefaultPrettyPrinter();
     }
 }
